@@ -40,6 +40,8 @@ class HS:
 				continue
 			if i == 'n':
 				continue
+			if i == '　':
+				continue			
 			if len(i) < 1:
 				continue
 			a = '▣'
@@ -50,9 +52,11 @@ class HS:
 			ret.append(a)
 		return ret
 
+	import re
+
 	def conv(self, q):
 		s = self.__sp(r'……—―。、「」！？　\n', q)
 		s = self.__rep(s)
 		s = ''.join(s)
-		s = s.replace('……。', '……')
+		s = re.sub(r'…[。，！？]', '…', s)
 		return s
